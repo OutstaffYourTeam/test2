@@ -1,0 +1,70 @@
+<div class="panel-header panel-header-sm"></div>
+<div class="main-content">
+    
+    <div class="row">
+        <div class="card card-chart">
+            <div class="card-header">
+                <div class="row justify-content-between px-5">
+                    <h4 class="card-title">{{ item.title }}</h4>
+                    <div class="btn-group">
+                        <button class="btn btn-success btn-round mr-2" (click)="handleClickSaveBtn()">{{ isEdit ? "Save" : "Edit" }}</button>
+                        <button *ngIf="isEdit === true" class="btn btn-danger btn-round" (click)="cancelEdit()">Cancel</button>
+                    </div>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="row" *ngIf="isEdit === true">
+                    <form [formGroup]="form" class="px-5 w-100">
+                        <ng-container formGroupName="item">
+                            <div class="row">
+                                <div class="col-md-4 pr-1">
+                                <div class="form-group">
+                                    <label>Color</label>
+                                    <input 
+                                        formControlName="color" 
+                                        class="form-control" 
+                                        [(colorPicker)]="color"
+                                        [style.background]="color"
+                                        [cpCancelButton]="true"
+                                        (colorPickerSelect)="handleColorChange($event)"
+                                        [cpCancelButtonClass]= "'btn btn-primary btn-xs'"
+                                    />
+                                </div>
+                                </div>
+                                <div class="col-md-4 px-1">
+                                <div class="form-group">
+                                    <label>Title</label>
+                                    <input formControlName="title" type="text" class="form-control" />
+                                </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 pr-1">
+                                <div class="form-group">
+                                    <label>Width</label>
+                                    <input formControlName="width" id="width" type="number" class="form-control" />
+                                </div>
+                                </div>
+                                <div class="col-md-4 px-1">
+                                <div class="form-group">
+                                    <label>Height</label>
+                                    <input formControlName="height" id="height" type="number" class="form-control" />
+                                </div>
+                                </div>
+                                <div class="col-md-4 pl-1">
+                                    <div class="form-group">
+                                    <label for="depth">Depth</label>
+                                    <input formControlName="depth" id="depth" type="number" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-container>
+                    </form>
+                </div>
+                <div class="">
+                  <app-model-item [item]="item"></app-model-item>
+                </div>
+              </div>
+        </div>
+    </div>
+</div>

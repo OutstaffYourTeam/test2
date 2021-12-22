@@ -1,0 +1,26 @@
+<div class="panel-header panel-header-sm"></div>
+<div class="main-content">
+  <div class="row">
+    <div class="col-lg-4" *ngFor="let item of items">
+      <div class="card card-chart">
+        <div class="card-header">
+          <h4 class="card-title">{{ item.title }}</h4>
+          <div ngbDropdown>
+            <button type="button" class="btn btn-round btn-default dropdown-toggle btn-simple btn-icon no-caret" ngbDropdownToggle>
+              <i class="now-ui-icons loader_gear"></i>
+            </button>
+            <div ngbDropdownMenu class="dropdown-menu-right">
+              <a class="dropdown-item" routerLink="/list/{{item.id}}">Details</a>
+              <li class="dropdown-item text-danger" (click)="removeItem(item.id)">Remove</li>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="">
+            <app-model-item [item]="item" [automation]="true"></app-model-item>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
